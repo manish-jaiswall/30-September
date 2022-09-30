@@ -1,0 +1,509 @@
+Q.1) Write a C# program to find the maximum and minum value in an array
+
+namespace _1.Array
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Enter the number of elements in the array");
+            int n=int.Parse(Console.ReadLine());
+
+            int[] arr = new int[n];
+            Console.WriteLine("Enter the elements of the array");
+            int mini=Int32.MaxValue;
+            int maxi=Int32.MinValue;
+            for(int i=0;i<n;i++)
+            {
+                arr[i]=int.Parse(Console.ReadLine());
+                mini=Math.Min(mini,arr[i]);
+                maxi=Math.Max(maxi,arr[i]);
+
+
+
+
+            }
+
+            Console.WriteLine("The maximum in array is: "+maxi);
+            Console.WriteLine("The minimum in array is: "+mini);
+        }
+    }
+};
+
+
+Q.2)"Write a C# program to create a Phonebook. 
+The Phonebook should take inputs from the user and store their numbers. 
+Also ask for the user age and store their numbers as Students in a sub class. If the user gives a profession, store the numbers in the Service subclass. 
+Display the numbers as a collection. 
+Input: Rekha, 45, Doctor: Hema, 17 : Dheeraj, 34, Tennis player: Gaurav, 12: Bhavna, 33: Umang 24: Suresh, 66: Soni, 14, Siddhant, 28, Professor. 
+Output: Students:
+Hema, 17, Ph:No
+Gaurav, 12, Ph:No
+Soni, 14, Ph.No
+Services and Professionals:
+Rekha, 45, Doctor, Ph.No
+Dheeraj, 34, Tennis player, Ph.No
+Siddhant, 28, Professor, Ph.No
+Citizens:
+Bhavna, 33, Ph.No
+Umang, 24, Ph.No
+Suresh, 66, Ph.No"
+
+SOLUTION:
+
+using System.Globalization;
+
+namespace _2.PhoneBook
+{
+    internal class Program
+    {
+        class PhoneBook
+        {
+            public int phone;
+            public string name;
+
+            public int age;
+            public string profession;
+        }
+        class Student:PhoneBook
+        {
+            
+
+            public void getdetails(string name,int age, int phone)
+            {
+                this.name = name;
+                this.age = age;
+                this.phone = phone;
+            }
+
+            public void displaystu()
+            {
+                Console.WriteLine(name+" "+age+" "+phone);
+            }
+
+        }
+        class profession: PhoneBook
+        {
+            
+
+            public void getdetails(string name, int age, int phone, string profession)
+            {
+                this.name = name;
+                this.age = age;
+                this.phone = phone;
+                this.profession = profession;
+            }
+
+            public void displayprof()
+            {
+                Console.WriteLine(name+" "+age+" "+phone+" "+profession);
+            }
+        }
+       
+
+        static void Main(string[] args)
+        {
+            Student s1 = new Student();
+            s1.name = "hari";
+            s1.age = 10;
+            s1.phone = 010100101;
+            s1.displaystu();
+
+            profession p1=new profession();
+            p1.name = "Nita";
+            p1.age = 40;
+            p1.phone = 1010011993;
+            p1.displayprof();
+            
+        }
+    }
+}
+
+Q.3)"Write a C# program that implements an IVehicle interface with two methods, one for Drive of type void and another for Refuel of type bool. 
+The Refuel method takes an input parameter of type integer with the amount of petrol/diesel to refuel. 
+Then create a Car class with a builder that receives a parameter with the car's starting fuel(petrol/diesel) amount and implements
+ the Drive and Refuel methods of the car.
+
+The Drive method will print on the screen that the car is Driving, if the fuel(petrol/diesel) is greater than 0. 
+The Refuel method will increase the fuel(petrol/diesel) of the car and return true.
+
+To carry out the tests, create an object of type Car with 0 of fuel(petrol/diesel) in the Main program 
+and ask the user for an amount of fuel(petrol/diesel) to refuel, finally execute the Drive method of the car."
+
+
+
+
+SOLUTION:
+namespace _3.Interface
+{
+    internal class Program
+    {
+        interface IVehicle
+        {
+            void Drive();
+            bool Refuel(int amount);
+        }
+
+        public class Car : IVehicle
+        {
+            int Fuel=0;
+
+            public void Drive()
+            {
+                if (Fuel > 0)
+                {
+                    Console.WriteLine("The car is Driving");
+                }
+                else
+                {
+                    Console.WriteLine("No fuel");
+                }
+
+            }
+            public bool Refuel(int amount)
+            {
+                Fuel += amount;
+                return true;
+            }
+        }
+         static void Main(string[] args)
+        {
+            Car c1 = new Car();
+            Console.WriteLine("Enter the fuel amount");
+            int f=int.Parse(Console.ReadLine());
+            c1.Refuel(f);
+            c1.Drive();
+        }
+    }
+}
+
+
+q.4)  "Write a C# program that implements an abstract class Bird that has a Name property of type text and three methods SetName (string name), GetName and Fly. 
+The Eat method will be an abstract method of type void.
+You will also need to create a Crow/Parrot class that implements the above Bird class and the Fly method should say that the crow/parrot is flying. 
+To test the program ask the user for a bird name and create a new Crow/Parrot type object from the Main program, 
+give the Crow/Parrot object a name, and then execute the GetName and Fly methods."
+
+
+SOLUTION:
+
+using System.Globalization;
+
+namespace _4.Abstract
+{
+    internal class Program
+    {
+        public abstract class Bird
+        {
+            string name;
+
+            public void setName(string name)
+            {
+                this.name = name;   
+            }
+             
+            public string GetName()
+            {
+                return name;
+            }
+
+            public void Fly()
+            {
+                Console.WriteLine("The bird is flying");
+            }
+            public abstract void Eat();
+        }
+
+        public class Crow: Bird
+            {
+            public override void Eat()
+            {
+                Console.WriteLine("The bird eats");
+            }
+        }
+        static void Main(string[] args)
+        {
+            Crow c1 = new Crow();
+            string name = Console.ReadLine();
+            c1.setName(name);
+            Console.WriteLine("The name of the Bird is: "+ c1.GetName());
+            c1.Fly();
+        }
+    }
+}
+
+
+Q.5) Write a C# program to calculate the multiplication table and the factorial of the given number. Get the number as an input from the user. 
+
+SOLuTION:
+
+namespace _5.FactorAndMultiplication
+{
+    internal class Program
+    {
+
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Enter the Number:");
+            int n=int.Parse(Console.ReadLine());
+            Console.WriteLine();
+            Console.WriteLine("The factors of {0} are: ",n);
+
+            for(int i=1;i<=n;i++)
+            {
+                if(n%i==0)
+                {
+                    Console.WriteLine(i+" ");
+                }
+            }
+
+            Console.WriteLine("The multiplication table is: ");
+
+            for(int i=1;i<=10;i++)
+            {
+                Console.WriteLine("{0}X{1}={2}",n,i,n*i);
+            }
+            
+        }
+    }
+}
+
+Q.6)Write a C# program to copy the contents of one file to another file and encrypt the new file. Have any rule to differentiate the contents along with the encryption. 
+
+SOLUTION:
+using static System.Net.Mime.MediaTypeNames;
+using System.Text.RegularExpressions;
+using System.IO;
+
+namespace _6.FileCopy
+{
+    internal class Program
+    {
+       
+        static void Main(string[] args)
+        {
+            
+            string path1 = "C:\\Users\\manish.jaiswal\\OneDrive - Entain Group\\Documents\\Training\\15Test\\old.txt";
+            string path2 = "C:\\Users\\manish.jaiswal\\OneDrive - Entain Group\\Documents\\Training\\15Test\\new.txt";
+            File.Copy(path1, path2);
+
+            FileInfo filetoencrypt = new FileInfo(path1);
+            filetoencrypt.Encrypt();
+            filetoencrypt.Decrypt();
+
+            
+
+
+
+        }
+    }
+}
+
+Q.7)"Write a C# program that uses a Queue to store a list of people. Create a class called Person.cs with two properties (name and age) 
+and a ToString() method to print the result.
+
+Then define a Queue and request the information (name and age) of 5 people from the user, you will have to 
+store the information in the queue.  Finally print the result of the queue on screen. "
+
+SOLUTION:
+using System.Collections;
+using System;
+
+namespace _7.Queue
+{
+    internal class Program
+    {
+        public class Person
+        {
+            public string Name;
+            public int Age;
+
+            public void setdeatils(string Name,int Age)
+            {
+                this.Name = Name;
+                this.Age = Age;
+            }
+
+
+            public  string Tostring()
+            {
+                return Name + " - " + Age;
+            }
+        }
+        static void Main(string[] args)
+        {
+            Queue<string> q1 = new Queue<string>();
+
+            Console.WriteLine("Enter the number of people: ");
+            int n=int.Parse(Console.ReadLine());
+            for (int i = 0; i < n; i++)
+            {
+                Console.WriteLine("Enter the Name: ");
+                string name = Console.ReadLine();
+                Console.WriteLine("Enter the age: ");
+                int age = int.Parse(Console.ReadLine());
+                Person p1=new Person();
+                
+                p1.setdeatils(name, age);
+                string res = p1.Tostring();
+
+                q1.Enqueue(res);
+                
+            }
+
+            foreach (string p in q1)    
+            {
+                Console.WriteLine(p);
+            }
+        }
+    }
+}
+
+Q.8) "Write a C# program to create a file with a name given by the user. Add atleast 10 lines of content to the file. 
+Get 2 inputs from the user, old word and new word and replace the old word with the new word throughout the file. 
+You can show a little bit of content to the user as hints for the old word. "
+
+SOLUTION:
+
+using System.Data.SqlTypes;
+
+namespace _8.FilehandlingReplace
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Enter the name of the file");
+
+            string name=Console.ReadLine();
+
+            string path = "C:\\Users\\manish.jaiswal\\OneDrive - Entain Group\\Documents\\Training\\"+name+".txt";
+            FileStream fs = new FileStream(path, FileMode.OpenOrCreate);
+
+            StreamWriter sw = new StreamWriter(fs);
+            Console.WriteLine("Enter the contents of the file");
+            string s=Console.ReadLine();
+            sw.WriteLine(s);
+
+            Console.WriteLine("Enter the word you want to replace");
+            string oldword=Console.ReadLine();
+            Console.WriteLine("Enter the new word");
+            
+            string newword = Console.ReadLine();
+            
+            fs.Close();
+
+            string text = File.ReadAllText(path);
+            text =text.Replace(oldword,newword);
+            File.WriteAllText(path, text);
+
+
+
+            
+
+        }
+    }
+}
+
+Q.9) "Create a C# program to:
+Create an Employee class and add about 5 employees. Write a method to give promotion. 
+Get a value from the user as a trigger to give promotion to selected employees. Use Delegates
+"
+
+namespace _9.Delegates
+{
+    public delegate void Promotion(int years);
+    internal class Program
+    {
+        
+
+
+        class Employee
+        {
+            public  static void EmpPromotion(int n)
+            {
+                if (n > 5)
+                {
+                    Console.WriteLine("The Promotion is Granted");
+                }
+                else
+                {
+                    Console.WriteLine("The Promotion is not Granted");
+                }
+            }
+        }
+
+
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Enter the number of years");
+            int n = int.Parse(Console.ReadLine());
+            Promotion emp = new Promotion(Employee.EmpPromotion);
+            emp.Invoke(n);
+
+        }
+    }
+}
+
+
+Q.10)"Create a C# program to:
+The main task is to get a stage / event ready with the following tasks:
+Flower decorations to be completed on stage.
+Chief guest to be picked up from the airport. 
+Co-ordinate with the caterers and set up the food area. 
+Arrange the gifts to be distributed in the stage after the decorations are over. 
+Start the function only when the Chief guest has arrived at the venue. "
+
+
+
+SOLUTION:
+namespace _10.Async
+{
+    internal class Program
+    {
+       
+        static async Task<int> Flower()
+        {
+            Console.WriteLine("The Flower Decoration Started");
+            
+            await Task.Delay(1000);
+            Console.WriteLine("The Flower Decortion Completed ");
+     
+           
+
+            return 0;
+
+        }
+        static async Task<int> GiftsGuest()
+        {
+            Console.WriteLine("The car sent to pickup Guest");
+            Console.WriteLine("Coordination with Cartere and Food ");
+            await Task.Delay(7000);
+
+            Console.WriteLine("The gifts distributed");
+
+            return 0;
+        }
+
+        static async Task<int> Stage()
+        {
+            await Task.Delay(8000);
+            Console.WriteLine("The Guest has arrived");
+            await Task.Delay(10000);
+            Console.WriteLine("The stage is Ready");
+            return 0;
+
+        }
+
+
+
+
+        static async Task Main(string[] args)
+        {
+            Flower();
+            GiftsGuest();
+            Stage();
+            Console.ReadKey();
+        }
+    }
+}
